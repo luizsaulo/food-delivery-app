@@ -19,11 +19,14 @@ const Header = () => {
     const [{user}, dispatch] = useStateValue();
 
     const login = async () => {
-        const {user : {refreshToken, providerData}} = await signInWithPopup(firebaseAuth, provider)
+        if(!user){
+            const {user : {refreshToken, providerData}} = await signInWithPopup(firebaseAuth, provider)
         dispatch({
             type: actionType.SET_USER,
             user: providerData[0]
-        })
+        });
+        localStorage.setItem('user', JSON.stringify(providerData[0]))
+        }
     };
 
   return (
@@ -61,11 +64,15 @@ const Header = () => {
           <div className="relative">
             <motion.img
                 whileTap={{ scale: 0.6 }}
-                src={Avatar}
-                className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer"
+                src={user ? user.photoURL : Avatar}
+                className="w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer rounded-full"
                 alt="userprofile"
                 onClick={login}
             />
+            <div className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0 px-4 py-2">
+                <p>New Item</p>
+                <p>Logout</p>
+            </div>
           </div>
         </div>
       </div>
