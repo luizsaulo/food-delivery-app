@@ -30,7 +30,7 @@ const MainContainer = () => {
             <motion.div 
               whileTap={{ scale: 0.75 }} 
               className="w-8 h-8 rounded-lg bg-orange-300 hover:bg-orange-500 cursor-pointer 
-              transition-all duration-100 ease-in-out hover:shadow-lg flex 
+              hover:shadow-lg flex 
               items-center justify-center"
               onClick={() => setScrollValue(-200)}
             >
