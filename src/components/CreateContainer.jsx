@@ -73,7 +73,7 @@ const CreateContainer = () => {
   const saveDetails = () => {
     setIsLoading(true);
     try {
-      if((!title || !calories || !imageAsset || !price || !category)){
+      if(!title || !calories || !imageAsset || !price || !category){
       setFields(true);
       setMsg('Required fields can´t be empty.');
       setAlertStatus('danger')
@@ -126,8 +126,8 @@ const CreateContainer = () => {
   const fetchData = async () => {
     await getAllFoodItems().then((data) => {
       dispatch({
-        type : actionType.SET_FOOD_ITEMS,
-        foodItems : data
+        type: actionType.SET_FOOD_ITEMS,
+        foodItems: data,
       });
     });
   };
