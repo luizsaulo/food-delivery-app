@@ -5,7 +5,7 @@ import { firestore } from "../firebase.config"
 export const saveItem = async (data) => {
     await setDoc(
         doc(firestore, 'foodItems', `${Date.now()}`), data, { 
-            merge : true, 
+            merge: true, 
     });
 };
 
@@ -15,5 +15,5 @@ export const getAllFoodItems = async () => {
         query(collection(firestore, 'foodItems'), orderBy('id', 'desc'))
     );
 
-    return items.doc.map((doc) => doc.data());
+    return items.docs.map((doc) => doc.data());
 };
